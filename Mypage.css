@@ -29,6 +29,29 @@
         clear: both;
     }
 }
+/* 5. 上部タブメニュー（利用者ページ、ノート、編集など）の乱れを解消 */
+    #p-cactions ul, #p-personal ul, .namespaces ul, .views ul, .tabs ul {
+        display: flex !important;
+        flex-wrap: nowrap !important; /* 絶対に縦に折り返さない */
+        overflow-x: auto !important;  /* はみ出したら横スクロールできるようにする */
+        white-space: nowrap !important;
+        padding-left: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+        -webkit-overflow-scrolling: touch; /* スマホでのスクロールを滑らかに */
+    }
+
+    #p-cactions li, #p-personal li, .namespaces li, .views li, .tabs li {
+        display: inline-block !important;
+        flex: 0 0 auto !important;
+        font-size: 11px !important; /* スマホ用に文字を少し小さく */
+        margin-right: 8px !important;
+    }
+
+    /* 6. もし横スクロールバーが邪魔なら薄く表示（または非表示） */
+    #p-cactions ul::-webkit-scrollbar {
+        display: none; /* スクロールバーを隠してすっきりさせる */
+    }
 
 /* --- Wikipedia 完全準拠ベースデザイン --- */
 body {
