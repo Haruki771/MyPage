@@ -4,41 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ただの気分 - Wikipedia風マイページ</title>
-    <link rel="stylesheet" href="Mypage.css?v=2">
-    <style>
+    <link rel="stylesheet" href="Mypage.css?v=3"> <style>
 /* --- スマホ・モバイル端末用の強制最適化設定 --- */
 @media screen and (max-width: 768px) {
-    /* 上部タブメニュー（利用者ページ、ノート、編集など）を横一列にしてスクロール可能に */
-    #p-cactions ul, #p-personal ul, .namespaces ul, .views ul, .tabs ul, 
-    div[id*="navigation"] ul, div[class*="menu"] ul, header ul {
+    /* 1. 最上部の個人ツールメニューを横一列スクロールに */
+    .personal-tools ul {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
         white-space: nowrap !important;
-        padding: 0 !important;
+        padding: 5px !important;
         margin: 0 !important;
         list-style: none !important;
         -webkit-overflow-scrolling: touch !important;
     }
-
-    #p-cactions li, #p-personal li, .namespaces li, .views li, .tabs li,
-    div[id*="navigation"] li, div[class*="menu"] li, header li {
+    .personal-tools li {
         display: inline-block !important;
         flex: 0 0 auto !important;
         font-size: 11px !important;
-        margin-right: 8px !important;
+        margin-right: 12px !important;
     }
 
-    /* メインコンテンツを画面幅いっぱいに */
-    #content, .main-content, #bodyContent {
+    /* 2. サイドバー（左メニュー）をスマホでは完全に非表示にしてメインを広げる */
+    .wiki-sidebar {
+        display: none !important;
+    }
+    .wiki-wrapper {
+        display: block !important;
+    }
+
+    /* 3. 【最重要】「利用者ページ」「ノート」「閲覧」「編集」のタブを横一列に整列 */
+    .wiki-tabs {
+        display: flex !important;
+        flex-direction: column !important; /* タブエリアと検索ボックスを縦並びに分離 */
+        padding: 0 !important;
+        background: #f6f6f6 !important;
+    }
+    
+    .left-tabs, .right-tabs {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important; /* はみ出したら横スクロール可能に */
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .right-tabs {
+        border-top: 1px solid #a2a9b1 !important; /* 上下の区切り */
+        padding-top: 2px !important;
+    }
+
+    /* タブのボタン自体のスマホ調整 */
+    .wiki-tabs .tab {
+        display: inline-block !important;
+        flex: 0 0 auto !important;
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+    }
+
+    /* スマホだと画面を圧迫する検索ボックスの調整 */
+    .search-box {
+        margin: 5px !important;
+        display: flex !important;
+        width: calc(100% - 10px) !important;
+    }
+    .search-box input {
+        flex: 1 !important;
+        width: auto !important;
+    }
+
+    /* 4. メインコンテンツを画面幅いっぱいに */
+    .wiki-main {
         margin-left: 0 !important;
-        padding: 10px !important;
         width: 100% !important;
+        padding: 0 !important;
         box-sizing: border-box !important;
     }
+    .wiki-body {
+        padding: 10px !important;
+    }
 
-    /* 画像の右回り込みを解除して中央配置 */
+    /* 5. 画像の右回り込みを解除して中央配置 */
     .wiki-thumb-right, img {
         float: none !important;
         display: block !important;
@@ -170,7 +219,7 @@
         // おまかせ表示を押したらWiki特有のランダムジャンプ感を出す
         document.getElementById('random-page').addEventListener('click', (e) => {
             e.preventDefault();
-            const sections = ['#section-1', '#section-2', '#section-3'];
+            const sections = ['#section-1', '#section-2'];
             const randomSection = sections[Math.floor(Math.random() * sections.length)];
             window.location.hash = randomSection;
         });
