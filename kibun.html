@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ただの気分 - Wikipedia風マイページ</title>
+    <link rel="stylesheet" href="Mypage.css">
+</head>
+<body>
+
+    <header class="personal-tools">
+        <ul>
+            <li>👤 <a href="#" class="new-window">ただの気分</a></li>
+            <li><a href="#">トーク</a></li>
+            <li><a href="#">下書き</a></li>
+            <li><a href="#">設定</a></li>
+            <li><a href="#">ベータ版</a></li>
+            <li><a href="#">ログアウト</a></li>
+        </ul>
+    </header>
+
+    <div class="wiki-wrapper">
+        <aside class="wiki-sidebar">
+            <div class="wiki-logo">
+                <span class="logo-text">個人<br>百科</span>
+            </div>
+            <div class="sidebar-portal">
+                <h3>案内</h3>
+                <ul>
+                    <li><a href="#">メインページ</a></li>
+                    <li><a href="#">コミュニティ・ポータル</a></li>
+                    <li><a href="#">最近の出来事</a></li>
+                    <li><a href="#">新しいページ</a></li>
+                    <li><a href="#" id="random-page">おまかせ表示</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-portal">
+                <h3>ツール</h3>
+                <ul>
+                    <li><a href="#">リンク元</a></li>
+                    <li><a href="#">関連ページの更新状況</a></li>
+                    <li><a href="#">ファイルをアップロード</a></li>
+                    <li><a href="#">特別ページ</a></li>
+                    <li><a href="javascript:location.reload();">この版への固定リンク</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="wiki-main">
+            <div class="wiki-tabs">
+                <div class="left-tabs">
+                    <a href="#" class="tab active">利用者ページ</a>
+                    <a href="#" class="tab">ノート</a>
+                </div>
+                <div class="right-tabs">
+                    <a href="#" class="tab active">閲覧</a>
+                    <a href="#" class="tab" id="master-edit-btn">編集</a>
+                    <a href="#" class="tab">履歴表示</a>
+                    <div class="search-box">
+                        <input type="search" placeholder="マイウィキ内を検索">
+                        <button>検索</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wiki-body">
+                <h1 class="first-heading">ただの気分</h1>
+                <p class="site-sub">出典: フリーな個人百科事典『マイウィキ（MyWiki）』</p>
+
+                <div class="wiki-notice-box protection-notice">
+                    <span class="notice-icon">🔒</span>
+                    <div>
+                        この利用者ページは現在、持ち主の現実逃避および課題集中期間のため<strong>半保護</strong>されています。ログインユーザーのみが脳内で編集を提案できます。
+                    </div>
+                </div>
+
+                <div class="redirect-sub">（<a href="#">上原晴輝</a> から転送）</div>
+
+                <div class="wiki-content" id="editable-area">
+                    <p>ただの気分とは</p>
+
+                    <div class="table-of-contents">
+                        <div class="toc-title">
+                            <strong>目次</strong> [非表示]
+                        </div>
+                        <ul>
+                            <li><a href="#section-1">1 ただの気分とは</a></li>
+                            <li><a href="#section-2">2 関連項目</a></li>
+                        </ul>
+                    </div>
+
+                    <h2 id="section-1">ただの気分とは<span class="edit-section">[<a href="#" class="section-edit-trigger">編集</a>]</span></h2>
+                    <p>
+                        ただの気分とはただの気分である。以上。
+                    </p>
+
+                    
+                    <h2 id="section-2">関連項目<span class="edit-section">[<a href="#" class="section-edit-trigger">編集</a>]</span></h2>
+                    <ul>
+                        <li><a href="#" class="new-window">気分</a></li>
+                        <li><a href="#" class="new-window">ポンコツ</a></li>
+                        <li><a href="#" class="new-window">怠惰</a></li>
+                        <li><a href="#" class="new-window">要出典</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 「編集」リンクを押したらその場でテキスト編集可能にする（Wikiの編集モードパロディ）
+        document.querySelectorAll('.section-edit-trigger, #master-edit-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const area = document.getElementById('editable-area');
+                if (area.getAttribute('contenteditable') === 'true') {
+                    area.setAttribute('contenteditable', 'false');
+                    area.style.backgroundColor = 'transparent';
+                    alert('変更を「プレビュー」しました（実際には保存されません）。');
+                } else {
+                    area.setAttribute('contenteditable', 'true');
+                    area.style.backgroundColor = '#fff9e6';
+                    area.focus();
+                }
+            });
+        });
+
+        // おまかせ表示を押したらWiki特有のランダムジャンプ感を出す
+        document.getElementById('random-page').addEventListener('click', (e) => {
+            e.preventDefault();
+            const sections = ['#section-1', '#section-2', '#section-3'];
+            const randomSection = sections[Math.floor(Math.random() * sections.length)];
+            window.location.hash = randomSection;
+        });
+    </script>
+</body>
+</html>

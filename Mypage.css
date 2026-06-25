@@ -1,0 +1,296 @@
+/* --- Wikipedia 完全準拠ベースデザイン --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #f6f6f6;
+    color: #202122;
+    font-size: 14px;
+}
+
+a {
+    color: #0645ad;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #0b0080;
+}
+
+/* --- 個人ツール（最上部） --- */
+.personal-tools {
+    display: flex;
+    justify-content: flex-end;
+    padding: 4px 32px 0 0;
+    font-size: 12px;
+}
+
+.personal-tools ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.personal-tools li {
+    margin-left: 12px;
+}
+
+.personal-tools a {
+    color: #54595d;
+}
+
+/* --- 全体レイアウト --- */
+.wiki-wrapper {
+    display: flex;
+    max-width: 100%;
+}
+
+/* --- Wikipedia風左サイドバー --- */
+.wiki-sidebar {
+    width: 160px;
+    padding: 0 10px;
+    flex-shrink: 0;
+}
+
+.wiki-logo {
+    width: 130px;
+    height: 130px;
+    margin: 10px auto;
+    background: #eaecf0;
+    border-radius: 50%; /* 本家は球体ですが、CSSでそれっぽく */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #a2a9b1;
+    background-image: radial-gradient(#ffffff, #e0e0e0);
+}
+
+.logo-text {
+    text-align: center;
+    font-family: serif;
+    font-size: 16px;
+    color: #54595d;
+    line-height: 1.2;
+}
+
+.sidebar-portal {
+    margin-bottom: 15px;
+    border-top: 1px solid #c8ccd1;
+    padding-top: 4px;
+}
+
+.sidebar-portal h3 {
+    font-size: 12px;
+    color: #54595d;
+    font-weight: normal;
+    margin: 4px 0;
+}
+
+.sidebar-portal ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.sidebar-portal li {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 4px;
+}
+
+/* --- メインコンテンツ --- */
+.wiki-main {
+    flex-grow: 1;
+    background: #ffffff;
+    border-left: 1px solid #a2a9b1;
+    border-top: 1px solid #a2a9b1;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* 上部タブ制御 */
+.wiki-tabs {
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 100%);
+    padding-left: 10px;
+    height: 40px;
+}
+
+.left-tabs, .right-tabs {
+    display: flex;
+    align-items: flex-end;
+}
+
+.tab {
+    display: block;
+    padding: 0 12px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #f6f6f6;
+    border: 1px solid #a2a9b1;
+    border-bottom: none;
+    margin-right: 4px;
+    font-size: 13px;
+    color: #0645ad;
+}
+
+.tab.active {
+    background-color: #ffffff;
+    color: #202122;
+    font-weight: bold;
+    height: 31px;
+    z-index: 2;
+    position: relative;
+    top: 1px;
+}
+
+.search-box {
+    margin: 0 15px 5px 15px;
+    display: flex;
+}
+
+.search-box input {
+    border: 1px solid #a2a9b1;
+    padding: 4px;
+    font-size: 13px;
+}
+
+.search-box button {
+    border: 1px solid #a2a9b1;
+    border-left: none;
+    background: #f8f9fa;
+    cursor: pointer;
+}
+
+/* 本文エリア */
+.wiki-body {
+    padding: 24px;
+    border-top: 1px solid #a2a9b1;
+}
+
+.first-heading {
+    font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+    font-size: 28px;
+    font-weight: normal;
+    margin: 0 0 4px 0;
+    border-bottom: 1px solid #a2a9b1;
+    padding-bottom: 4px;
+}
+
+.site-sub {
+    font-size: 12px;
+    color: #54595d;
+    margin: 0 0 15px 0;
+}
+
+.redirect-sub {
+    font-size: 13px;
+    color: #54595d;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+/* Wikipedia特有のインフォボックス（半保護など） */
+.wiki-notice-box {
+    background-color: #f8f9fa;
+    border: 1px solid #a2a9b1;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+}
+
+.protection-notice {
+    border-left: 4px solid #3366cc;
+}
+
+.notice-icon {
+    font-size: 24px;
+    margin-right: 15px;
+}
+
+/* セクション H2 */
+h2 {
+    font-family: 'Linux Libertine', 'Georgia', 'Times', serif;
+    font-weight: normal;
+    font-size: 22px;
+    border-bottom: 1px solid #a2a9b1;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-section {
+    font-size: 12px;
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+/* 目次（TOC） */
+.table-of-contents {
+    background-color: #f8f9fa;
+    border: 1px solid #a2a9b1;
+    padding: 12px;
+    display: inline-block;
+    min-width: 200px;
+    margin: 15px 0;
+    font-size: 13px;
+}
+
+.toc-title {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.table-of-contents ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.table-of-contents li {
+    margin-bottom: 4px;
+}
+
+/* --- オマージュの極み：[要出典] ツールチップ仕掛け --- */
+.citation-needed {
+    color: #0645ad;
+    font-size: 11px;
+    cursor: help;
+    user-select: none;
+    position: relative;
+    margin-left: 2px;
+}
+
+.citation-needed::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s;
+    z-index: 10;
+}
+
+.citation-needed:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
