@@ -4,17 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ただの気分 - Wikipedia風マイページ</title>
-    <link rel="stylesheet" href="Mypage.css?v=3"> <style>
-/* --- スマホ・モバイル端末用の強制最適化設定 --- */
+    <link rel="stylesheet" href="Mypage.css?v=4">
+    <style>
+/* ==========================================================
+   🚨 スマホ・モバイル端末（画面横幅768px以下）用の強制最適化CSS
+   ========================================================== */
 @media screen and (max-width: 768px) {
-    /* 1. 最上部の個人ツールメニューを横一列スクロールに */
+    /* 1. 全体の外枠の制限を解除 */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        overflow-x: hidden;
+    }
+
+    /* 2. 最上部の個人ツールメニューを横一列スクロールに */
+    .personal-tools {
+        width: 100% !important;
+        box-sizing: border-box;
+        padding: 5px 10px !important;
+    }
     .personal-tools ul {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
         white-space: nowrap !important;
-        padding: 5px !important;
+        padding: 0 !important;
         margin: 0 !important;
         list-style: none !important;
         -webkit-overflow-scrolling: touch !important;
@@ -23,76 +39,95 @@
         display: inline-block !important;
         flex: 0 0 auto !important;
         font-size: 11px !important;
-        margin-right: 12px !important;
+        margin-right: 15px !important;
     }
 
-    /* 2. サイドバー（左メニュー）をスマホでは完全に非表示にしてメインを広げる */
-    .wiki-sidebar {
-        display: none !important;
-    }
+    /* 3. 【最重要】スマホでは左側のサイドバーを完全に非表示にする */
     .wiki-wrapper {
-        display: block !important;
+        display: block !important; /* 横並びから縦並び（実質メインのみ）に変更 */
+    }
+    .wiki-sidebar {
+        display: none !important; /* サイドバーを非表示 */
     }
 
-    /* 3. 【最重要】「利用者ページ」「ノート」「閲覧」「編集」のタブを横一列に整列 */
+    /* 4. メインコンテンツ領域を画面幅100%いっぱいに広げる */
+    .wiki-main {
+        margin-left: 0 !important;
+        width: 100% !important;
+        display: block !important;
+        box-sizing: border-box !important;
+    }
+    .wiki-body {
+        padding: 15px 10px !important;
+    }
+
+    /* 5. 【最重要】縦に潰れていた「利用者ページ」「ノート」などのタブメニューを横一列に整列 */
     .wiki-tabs {
         display: flex !important;
-        flex-direction: column !important; /* タブエリアと検索ボックスを縦並びに分離 */
+        flex-direction: column !important; /* タブ群と検索ボックスを上下2段に分ける */
+        width: 100% !important;
         padding: 0 !important;
         background: #f6f6f6 !important;
+        border-bottom: 1px solid #a2a9b1 !important;
     }
     
     .left-tabs, .right-tabs {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
-        overflow-x: auto !important; /* はみ出したら横スクロール可能に */
+        overflow-x: auto !important; /* はみ出たメニューは横スワイプ可能にする */
         white-space: nowrap !important;
         -webkit-overflow-scrolling: touch !important;
     }
-
     .right-tabs {
-        border-top: 1px solid #a2a9b1 !important; /* 上下の区切り */
+        border-top: 1px solid #eaecf0 !important; /* 上下の区切り線 */
         padding-top: 2px !important;
+        margin-left: 0 !important;
     }
 
-    /* タブのボタン自体のスマホ調整 */
+    /* タブボタン自体のサイズ調整 */
     .wiki-tabs .tab {
         display: inline-block !important;
         flex: 0 0 auto !important;
-        padding: 8px 10px !important;
-        font-size: 12px !important;
+        padding: 10px 12px !important;
+        font-size: 13px !important;
+        line-height: 1 !important;
         white-space: nowrap !important;
     }
 
-    /* スマホだと画面を圧迫する検索ボックスの調整 */
+    /* 検索ボックスをスマホ画面幅にフィットさせる */
     .search-box {
-        margin: 5px !important;
+        margin: 6px 10px !important;
         display: flex !important;
-        width: calc(100% - 10px) !important;
+        width: calc(100% - 20px) !important;
+        float: none !important;
     }
     .search-box input {
         flex: 1 !important;
         width: auto !important;
+        height: 28px !important;
+    }
+    .search-box button {
+        height: 28px !important;
+        padding: 0 10px !important;
     }
 
-    /* 4. メインコンテンツを画面幅いっぱいに */
-    .wiki-main {
-        margin-left: 0 !important;
-        width: 100% !important;
-        padding: 0 !important;
-        box-sizing: border-box !important;
-    }
-    .wiki-body {
-        padding: 10px !important;
-    }
-
-    /* 5. 画像の右回り込みを解除して中央配置 */
-    .wiki-thumb-right, img {
+    /* 6. 画像の右回り込み（PC用）を解除し、スマホでは中央に大きく配置 */
+    .wiki-thumb-right, img[style*="float: right"], a[href*="html"] img {
         float: none !important;
         display: block !important;
         margin: 15px auto !important;
-        max-width: 90% !important;
+        max-width: 85% !important;
+        width: auto !important;
+    }
+
+    /* 転送元のテキストや目次の幅調整 */
+    .redirect-sub {
+        margin-bottom: 10px;
+    }
+    .table-of-contents {
+        width: 100% !important;
+        box-sizing: border-box;
     }
 }
 </style>
@@ -168,7 +203,17 @@
                 <div class="redirect-sub">（<a href="#">上原晴輝</a> から転送）</div>
 
                 <div class="wiki-content" id="editable-area">
-                    <p>ただの気分とは</p>
+                    
+                    <p>
+                        <a href="kibun.html" target="_blank" rel="noopener noreferrer">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/241005_aespa_K-Link_Festival.jpg/330px-241005_aespa_K-Link_Festival.jpg" alt="aespa" style="float: right; max-width: 200px; border: 1px solid #ccc; padding: 3px; background: #fff; margin: 0 0 10px 10px; cursor: pointer;">
+                        </a>
+                        <b>Haruki Uehara</b>（うえはら はるき）は、日本の現役学生であり、アイドルオタク。
+                    </p>
+                    <p>
+                        「ありとあらゆる傾向と対策」を提唱しているが、その科学的根拠は未だ立証されていない。
+                    </p>
+                    <div style="clear: both;"></div>
 
                     <div class="table-of-contents">
                         <div class="toc-title">
@@ -185,7 +230,6 @@
                         ただの気分とはただの気分である。以上。
                     </p>
 
-                    
                     <h2 id="section-2">関連項目<span class="edit-section">[<a href="#" class="section-edit-trigger">編集</a>]</span></h2>
                     <ul>
                         <li><a href="#" class="new-window">気分</a></li>
