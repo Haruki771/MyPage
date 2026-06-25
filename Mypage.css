@@ -1,3 +1,35 @@
+/* --- スマホ・モバイル端末用の最適化設定 --- */
+@media screen and (max-width: 768px) {
+    /* 1. 左側のナビゲーションメニューを非表示、または下部に移動 */
+    #mw-navigation, .sidebar, #left-navigation {
+        display: none !important; 
+    }
+
+    /* 2. メインコンテンツの余白をリセットして画面いっぱいに広げる */
+    #content, .main-content {
+        margin-left: 0 !important;
+        padding: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* 3. 右側に回り込ませていた画像を、スマホでは中央配置＆横幅いっぱいに */
+    .wiki-thumb-right, 
+    img[style*="float: right"], 
+    a[href*="html"] img {
+        float: none !important;
+        display: block !important;
+        margin: 15px auto !important;
+        max-width: 90% !important;
+        width: auto !important;
+    }
+
+    /* 4. 文字の回り込み解除を徹底 */
+    p {
+        clear: both;
+    }
+}
+
 /* --- Wikipedia 完全準拠ベースデザイン --- */
 body {
     margin: 0;
