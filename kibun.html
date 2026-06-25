@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ただの気分 - Wikipedia風マイページ</title>
     <link rel="stylesheet" href="Mypage.css?v=2">
+    <style>
+/* --- スマホ・モバイル端末用の強制最適化設定 --- */
+@media screen and (max-width: 768px) {
+    /* 上部タブメニュー（利用者ページ、ノート、編集など）を横一列にしてスクロール可能に */
+    #p-cactions ul, #p-personal ul, .namespaces ul, .views ul, .tabs ul, 
+    div[id*="navigation"] ul, div[class*="menu"] ul, header ul {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        list-style: none !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    #p-cactions li, #p-personal li, .namespaces li, .views li, .tabs li,
+    div[id*="navigation"] li, div[class*="menu"] li, header li {
+        display: inline-block !important;
+        flex: 0 0 auto !important;
+        font-size: 11px !important;
+        margin-right: 8px !important;
+    }
+
+    /* メインコンテンツを画面幅いっぱいに */
+    #content, .main-content, #bodyContent {
+        margin-left: 0 !important;
+        padding: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 画像の右回り込みを解除して中央配置 */
+    .wiki-thumb-right, img {
+        float: none !important;
+        display: block !important;
+        margin: 15px auto !important;
+        max-width: 90% !important;
+    }
+}
+</style>
 </head>
 <body>
 
